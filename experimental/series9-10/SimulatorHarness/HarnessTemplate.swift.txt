@@ -1,0 +1,22 @@
+import SwiftUI
+@main struct ExperimentalHarnessApp: App {
+ @State private var status = "Running synthetic checks…"
+ var body: some Scene {
+  WindowGroup {
+   ScrollView { VStack(alignment: .leading, spacing: 10) {
+    Text("Experimental checks").font(.headline)
+    Text(status).accessibilityIdentifier("test-result")
+    Text("Synthetic data only. This harness tests our engine; it is not the Cobalt app or a physical-watch compatibility result.").font(.footnote)
+   }.padding() }
+   .task {
+    do {
+     let engine = try await RegressionChecks.run()
+     let fitness = FitnessChecks.run()
+     let models = ModelChecks.run()
+     status = "PASS: \(engine + fitness + models) checks\nEngine: \(engine)\nFitness: \(fitness)\nModel sources: \(models)"
+     print(status)
+    } catch { status = "FAIL: \(error.localizedDescription)" }
+   }
+  }
+ }
+}

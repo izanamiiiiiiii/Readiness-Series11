@@ -1,0 +1,36 @@
+{
+  "status": "experimental-unverified-on-physical-series9-series10",
+  "date": "2026-11-19",
+  "fullCobaltAppTestedOnSeries9Or10": false,
+  "physicalModelsTested": [],
+  "candidateBaselineBuild": 42,
+  "candidateIdenticalToSeries11Backup": true,
+  "candidateSHA256": "e75de7151ad544abd73da0345a9696e00d463e38abf2eb1738fd2acc402ad2de",
+  "fullAppMinimumWatchOS": "27.3",
+  "hostChecks": {
+    "passed": 53,
+    "engine": 25,
+    "fitness": 12,
+    "sourceModelCases": 16
+  },
+  "candidateAuditChecksPassed": 11,
+  "simulatorRuns": [
+    {
+      "model": "Series 9 (41mm)",
+      "runtime": "watchOS 27.2",
+      "checksPassed": 53
+    },
+    {
+      "model": "Series 10 (46mm)",
+      "runtime": "watchOS 27.2",
+      "checksPassed": 53
+    }
+  ],
+  "simulatorScope": "Separate synthetic engine harness. No Cobalt interface, live HealthKit reads, hardware sensor or real background refresh verification.",
+  "sourceProvenance": {
+    "Engine": "recovered build30 sources, not full build38 source",
+    "FitnessAdapter": "build42 source",
+    "SimulatorHarness": "new synthetic test harness"
+  },
+  "harnessSourceSHA256": "9c2e90ede30945b53397a79da931cc5698ad4fb642eb50152f060b9153c8ff46"
+}

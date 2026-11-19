@@ -1,0 +1,45 @@
+{
+  "status": "experimental-unverified",
+  "packageAuditPassed": true,
+  "physicalWatchCompatibilityVerified": false,
+  "targetModel": "Watch7,3",
+  "reportedWatchOS": "27.3",
+  "validatedBaselineOS": "27.3 beta 2 (24S5296d), Series 11 only",
+  "watchOSBuildMatchVerified": false,
+  "simulatorInstallable": false,
+  "bundle": "cl.moisesretamal.ReadinessAuthenticUIProbe.watchkitapp",
+  "build": "42",
+  "sha256": "e75de7151ad544abd73da0345a9696e00d463e38abf2eb1738fd2acc402ad2de",
+  "binaries": {
+    "Payload/Readiness.app/Cobalt": {
+      "cpu": "arm64e",
+      "subtypeHex": "0x80000002",
+      "buildVersions": [
+        {
+          "platform": 4,
+          "minimumOS": "27.3.0"
+        }
+      ]
+    },
+    "Payload/Readiness.app/Frameworks/ReadinessBridge.framework/ReadinessBridge": {
+      "cpu": "arm64e",
+      "subtypeHex": "0x80000002",
+      "buildVersions": [
+        {
+          "platform": 4,
+          "minimumOS": "27.2.0"
+        }
+      ]
+    },
+    "Payload/Readiness.app/Frameworks/Fit.framework/Fit": {
+      "cpu": "arm64e",
+      "subtypeHex": "0x80000002",
+      "buildVersions": [
+        {
+          "platform": 4,
+          "minimumOS": "27.3.0"
+        }
+      ]
+    }
+  }
+}

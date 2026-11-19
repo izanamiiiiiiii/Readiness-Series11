@@ -1,0 +1,44 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 6.4.2 (swiftlang-6.4.2.1.9 clang-2100.4.1.1)
+// swift-module-flags: -target arm64-apple-watchos27.2 -enable-objc-interop -enable-library-evolution -swift-version 5 -module-name WorkoutCore
+import Swift
+public enum ReadinessCategory {
+ case compromised, limited, ready, optimal
+ public static func scaledScore(from: Swift.Double?) -> Swift.Int?
+ public static func category(for: Swift.Int) -> WorkoutCore.ReadinessCategory
+}
+public enum SleepScoreComparison { case absolute, relative }
+public enum ReadinessActivityClassification { case below, steady, above }
+public enum WOReadinessActivityFactorType {
+ case todayCalories, yesterdayCalories, twoDayCalories, threeDayCalories, lastWeekCalories, weeklyAverageCalories
+ case todayLoad, yesterdayWorkoutLoad, twoDayWorkoutLoad, threeDayWorkoutLoad, trainingLoad, recentTrainingLoad
+}
+public struct WOReadinessActivityFactor {
+ public init(component: WorkoutCore.WOReadinessActivityFactorType, score: Swift.Double, classification: WorkoutCore.ReadinessActivityClassification)
+}
+public enum WORecoveryComponentType {
+ case overnightRHR, overnightRespiratoryRate, overnightWristTemp, overnightBloodOxygen, overnightHRV, overnightRecentHRV
+ case lastNightTotalSleep, recentTotalSleep, sleepScore, recentSleepScore
+ case daytimeRestingHR, daytimeBloodOxygen, daytimeHRV, morningRestingHR, morningBloodOxygen, morningHRV
+}
+public enum WORecoveryClassification { case nonBeneficialOutlier, nonBeneficialBlip, nominal, beneficialBlip, beneficialOutlier }
+public struct WORecoverySubscore {
+ public init(component: WorkoutCore.WORecoveryComponentType, score: Swift.Double, classification: WorkoutCore.WORecoveryClassification)
+}
+public struct ReadinessScoreModel {
+ public var score: Swift.Double? { get }
+ public var scaledScore: Swift.Int? { get }
+ public var isScoreAvailable: Swift.Bool { get }
+ public init(score: Swift.Double?, scaledScore: Swift.Int?, category: WorkoutCore.ReadinessCategory?, activityComponent: Swift.Double?, activityDrivingFactor: WorkoutCore.WOReadinessActivityFactor?, vitalsComponent: Swift.Double?, overnightVitalsComponent: Swift.Double?, overnightVitalsSubscores: [WorkoutCore.WORecoverySubscore]?, daytimeVitalsComponent: Swift.Double?, sleepScoreComponent: Swift.Double?, sleepSubscores: [WorkoutCore.WORecoverySubscore]?, algorithmVersion: Swift.String?, sleepScoreComparison: WorkoutCore.SleepScoreComparison?)
+}
+
+public enum ReadinessComputeError {}
+
+// Partial native class declaration: metatype and property dispatch only.
+// No init, stored fields, superclass, conformances, offsets, or vtable layout.
+public class ReadinessDataProvider {
+ public enum LoadingState { case hasntLoaded, loading, loaded }
+ public var readinessModel: WorkoutCore.ReadinessScoreModel? { get set }
+ public var loadingState: WorkoutCore.ReadinessDataProvider.LoadingState { get set }
+ deinit
+}

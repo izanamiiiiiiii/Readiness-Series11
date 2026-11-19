@@ -1,0 +1,6 @@
+.build-host/
+.derived/
+build/
+xcuserdata/
+*.xcuserstate
+simulator-build.log

@@ -2,6 +2,10 @@
 
 Readiness uses Apple's original Cobalt interface and an independent scoring engine for Series 11. There is no HermesEnabler dependency. The score is our experimental result, not Apple's readiness algorithm.
 
+## Series 9 and Series 10 — experimental
+
+[Open the dedicated experimental section](experimental/series9-10/README.md) for the candidate IPA, available source, Xcode synthetic test harness, dependency audit and validation results. The engine harness passed 53 checks on both the Series 9 (41mm) and Series 10 (46mm) simulators with watchOS 27.2. The complete Cobalt app has not been validated on either physical model. The candidate is the unchanged build42 package and requires watchOS 27.3 or later plus your own development signature.
+
 ## Recovered build 38 backup
 
 The actual app installed on the author's Watch was recovered through Xcode/LLDB on November 19, 2026. Its Cobalt executable, ReadinessBridge.framework, assets and localization files are now preserved here.
