@@ -1,0 +1,8 @@
+{
+  "build": 42,
+  "sha256": "e75de7151ad544abd73da0345a9696e00d463e38abf2eb1738fd2acc402ad2de",
+  "watchValidation": "Fitness, Vitals, Sleep checks visible; independent score displayed",
+  "evaluatorChecksPassed": 12,
+  "healthKitWrites": false,
+  "fullOriginalSourceAvailable": false
+}
