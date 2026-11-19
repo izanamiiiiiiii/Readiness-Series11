@@ -1,0 +1,23 @@
+{
+  "build": "38",
+  "bundle": "cl.moisesretamal.ReadinessAuthenticUIProbe.watchkitapp",
+  "minimumWatchOS": "27.3",
+  "recoveredFromInstalledDevelopmentApp": true,
+  "signaturesAndProvisioningRemoved": true,
+  "machineCodePreservation": [
+    {
+      "path": "Cobalt",
+      "codeSHA256": "2289006ba7ee329a982c3cc9bacf69c64a85b668d287a315bf73a349d678748b",
+      "codeUnchanged": true
+    },
+    {
+      "path": "Frameworks/ReadinessBridge.framework/ReadinessBridge",
+      "codeSHA256": "3c961872a9e5fccbe3ba507c6690cda9b028ec6912b63aa46d49277f6126880a",
+      "codeUnchanged": true
+    }
+  ],
+  "originalRecoveredIPA_SHA256": "44bb7ae84a22c6828cae76fe83b653577c824d2faade8460c8bf314bba71e18b",
+  "unsignedIPA_SHA256": "b5d04b0afa8b5fdf3662c77aa2c0875e4f860cba3c8f35442d25d6fc6cd7d162",
+  "reinstallationTested": false,
+  "build38SourceRecovered": false
+}
