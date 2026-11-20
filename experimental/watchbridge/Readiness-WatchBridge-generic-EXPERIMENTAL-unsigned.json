@@ -1,0 +1,15 @@
+{
+  "teamSpecific": false,
+  "sha256": "49942008dc11996c617bd1663457b4bd1b34ab9d7093ff3d23147d2f8e491512",
+  "hostBundle": "cl.moises.Readiness",
+  "inputWatchBundle": "cl.moises.Readiness.watchkitapp",
+  "watchBridgeCommit": "e8403df07d0e51c0bdebe8684974f6f22f33e340",
+  "installationVerified": false,
+  "windowsVerified": false,
+  "bridgeGuardPatch": {
+    "offset": "0xda9b4",
+    "original": "60000037",
+    "replacement": "03000014",
+    "scope": "Remove own integration bundle-ID rejection after re-signing; no entitlement changes"
+  }
+}
