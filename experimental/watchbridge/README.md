@@ -1,3 +1,5 @@
+> **Tester report (21 Nov):** Both apps install on Series 9 with WatchBridge 0.1.6, but this original candidate's iPhone host crashes and the Watch app stays at profile setup without a Health prompt. Do not treat it as a working release. [Revision 44 investigation and source fixes](revision44/README.md) document the host lifecycle fix and separate HealthKit provisioning requirement. The proposed WatchBridge patch and revised host still need device/Windows validation.
+
 # Generic iPhone host for WatchBridge — EXPERIMENTAL / UNTESTED INSTALLATION
 
 The iPhone host is implemented and compiled. The IPA contains `Payload/ReadinessHost.app/Watch/Readiness.app`, with the companion relationship configured.

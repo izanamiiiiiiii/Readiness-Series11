@@ -1,0 +1,39 @@
+--- a/vendor/isideload/isideload/src/sideload/sideloader.rs
++++ b/vendor/isideload/isideload/src/sideload/sideloader.rs
+@@ -158,6 +158,21 @@
+                 None
+             };
+ 
++            // Only Watch apps declaring Health access need this capability.
++            // Signing with profile entitlements alone does not enable HealthKit.
++            let requires_healthkit = app.bundle.watch_apps().iter().any(|watch| {
++                watch.bundle_identifier() == Some(app_id.identifier.as_str())
++                    && watch.app_info.contains_key("NSHealthShareUsageDescription")
++            });
++            if requires_healthkit && !app_id.features.get_bool("HK421J6T7P").unwrap_or(false) {
++                let mut features = Dictionary::new();
++                features.insert("HK421J6T7P".into(), plist::Value::Boolean(true));
++                *app_id = self.dev_session
++                    .update_app_id(&team, app_id, features, device_type.clone())
++                    .await
++                    .context("Could not enable HealthKit for this Watch app; signing cannot provide Health access")?;
++            }
++
+             // Watch App IDs used to be skipped here, so their provisioning profiles
+             // never carried an application-groups entitlement even when the Watch app
+             // needed one. Apply it with the watchOS platform marker, but tolerate a
+@@ -233,6 +248,14 @@
+ 
+             let parsed_profile = ProvisioningProfile::parse(profile.encoded_profile.as_ref())?;
+             let entitlements = parsed_profile.entitlements().clone();
++
++            let requires_healthkit = app.bundle.watch_apps().iter().any(|watch| {
++                watch.bundle_identifier() == Some(bundle_id.as_str())
++                    && watch.app_info.contains_key("NSHealthShareUsageDescription")
++            });
++            if requires_healthkit && !entitlements.get_bool("com.apple.developer.healthkit").unwrap_or(false) {
++                bail!("Watch provisioning profile does not grant HealthKit. Refusing to install an app that cannot request Health access.");
++            }
+ 
+             provisioning_profiles.push((bundle_id, profile, entitlements));
+         }
