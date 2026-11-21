@@ -16,6 +16,9 @@ jobs:
     runs-on: windows-latest
     timeout-minutes: 45
     steps:
+      - name: Keep source and patch line endings consistent
+        shell: pwsh
+        run: git config --global core.autocrlf false
       - uses: actions/checkout@v4
         with:
           path: readiness
