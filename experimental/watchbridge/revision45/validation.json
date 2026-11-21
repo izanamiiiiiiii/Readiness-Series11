@@ -13,5 +13,10 @@
   "windowsBuildRun": "https://github.com/izanamiiiiiiii/Readiness-Series11/actions/runs/44931917761",
   "windowsPhysicalSigningVerified": false,
   "series9SetupVerified": false,
-  "series10SetupVerified": false
+  "series10SetupVerified": false,
+  "windowsBuildSucceeded": true,
+  "windowsLibraryTestsPassed": 161,
+  "windowsLibraryTestsFailed": 0,
+  "windowsExecutableSha256": "a161d205af2ccc131d2abc9f039868ba0970923cb9698f5d1cb32401cf0e32a9",
+  "windowsArchiveSha256": "607fa61210cac75dc52d4dbff3036e6f6f54b5854173ba741ce5fe0648434594"
 }

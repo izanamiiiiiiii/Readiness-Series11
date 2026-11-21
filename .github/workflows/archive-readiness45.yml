@@ -1,0 +1,30 @@
+name: Archive tested Readiness 45 candidate
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: [.github/workflows/archive-readiness45.yml]
+permissions:
+  contents: write
+  actions: read
+jobs:
+  archive:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify and publish experimental packages
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          mkdir -p archive
+          gh api "repos/$REPO/actions/artifacts/14718716854/zip" > archive/Readiness-WatchBridge-HealthKit-Windows.zip
+          echo '607fa61210cac75dc52d4dbff3036e6f6f54b5854173ba741ce5fe0648434594  archive/Readiness-WatchBridge-HealthKit-Windows.zip' | sha256sum --check
+          cp experimental/watchbridge/revision45/Readiness-Host45-HealthKit-EXPERIMENTAL-unsigned.ipa archive/
+          cp experimental/watchbridge/revision45/source.zip archive/Readiness-Host45-source.zip
+          cp experimental/watchbridge/revision45/validation.json archive/
+          cp experimental/watchbridge/revision45/manifest.json archive/
+          printf '%s\n' 'Experimental Readiness host 45 and modified WatchBridge 0.1.6 installer.' '' 'Fixes the host scene lifecycle and requests/validates HealthKit capability for both host and Watch signing profiles.' '' 'Windows build succeeded: 142 application tests and 19 signing-library tests passed. Windows executable SHA-256: a161d205af2ccc131d2abc9f039868ba0970923cb9698f5d1cb32401cf0e32a9.' '' 'Physical Series 9/10 setup remains unverified. The local host installed successfully; physical launch was blocked by device lock. Sign with your own account and grant Health access on both devices. The unmodified WatchBridge 0.1.6 executable does not include this provisioning fix.' '' 'Modified build, not an official upstream release or endorsement. Original sources: https://github.com/AdminZachary/WatchBridge and https://github.com/nab138/iloader. Preserve the LICENSES.zip, BUILD.json, notices and checksums inside the Windows archive.' '' 'Instructions: https://github.com/izanamiiiiiiii/Readiness-Series11/tree/main/experimental/watchbridge/revision45' > archive/NOTES.md
+          gh release create readiness-host45-healthkit-experimental archive/*.zip archive/*.ipa archive/*.json --repo "$REPO" --target "$GITHUB_SHA" --title 'Readiness host 45 + HealthKit installer (experimental)' --notes-file archive/NOTES.md --prerelease
