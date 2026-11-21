@@ -1,0 +1,17 @@
+{
+  "revision": 45,
+  "hostCompiled": true,
+  "hostInstalledOnLocalIPhone": true,
+  "hostPhysicalLaunchVerified": false,
+  "hostLaunchBlocker": "Device locked; awaiting unlock",
+  "localHostSignatureAndProfileGrantHealthKit": true,
+  "isideloadTests": {
+    "passed": 19,
+    "failed": 0
+  },
+  "genericPackageChecksPassed": true,
+  "windowsBuildRun": "https://github.com/izanamiiiiiiii/Readiness-Series11/actions/runs/44931917761",
+  "windowsPhysicalSigningVerified": false,
+  "series9SetupVerified": false,
+  "series10SetupVerified": false
+}
