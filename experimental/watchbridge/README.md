@@ -1,3 +1,5 @@
+> **Revision 45:** [Updated IPA, Health permission UI, and tested HealthKit provisioning fix](revision45/README.md). Use the corrected signer for both host and Watch; the unmodified WatchBridge 0.1.6 does not request this capability. Physical Series9/10 setup remains experimental.
+
 > **Tester report (21 Nov):** Both apps install on Series 9 with WatchBridge 0.1.6, but this original candidate's iPhone host crashes and the Watch app stays at profile setup without a Health prompt. Do not treat it as a working release. [Revision 44 investigation and source fixes](revision44/README.md) document the host lifecycle fix and separate HealthKit provisioning requirement. The proposed WatchBridge patch and revised host still need device/Windows validation.
 
 # Generic iPhone host for WatchBridge — EXPERIMENTAL / UNTESTED INSTALLATION

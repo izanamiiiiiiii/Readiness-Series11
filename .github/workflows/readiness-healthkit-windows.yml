@@ -1,0 +1,61 @@
+name: Readiness HealthKit installer (experimental)
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - experimental/watchbridge/revision45/watchbridge-healthkit.patch
+      - .github/workflows/readiness-healthkit-windows.yml
+permissions:
+  contents: read
+concurrency:
+  group: readiness-healthkit-windows
+  cancel-in-progress: true
+jobs:
+  windows:
+    runs-on: windows-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: readiness
+      - uses: actions/checkout@v4
+        with:
+          repository: AdminZachary/WatchBridge
+          ref: e8403df07d0e51c0bdebe8684974f6f22f33e340
+          path: watchbridge
+      - name: Apply HealthKit provisioning fix
+        working-directory: watchbridge
+        shell: pwsh
+        run: |
+          git apply --check ../readiness/experimental/watchbridge/revision45/watchbridge-healthkit.patch
+          if ($LASTEXITCODE -ne 0) { throw 'Patch does not match pinned source' }
+          git apply ../readiness/experimental/watchbridge/revision45/watchbridge-healthkit.patch
+          if ($LASTEXITCODE -ne 0) { throw 'Patch failed' }
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: watchbridge/src-tauri
+      - uses: ilammy/msvc-dev-cmd@v1
+      - run: choco install strawberryperl make --no-progress
+      - uses: oven-sh/setup-bun@v2
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Test and build experimental Windows installer
+        working-directory: watchbridge
+        shell: pwsh
+        env:
+          PYTHONUTF8: '1'
+          PYTHONIOENCODING: utf-8
+        run: ./scripts/Build-Windows.ps1 -BuildExecutable
+      - name: Mark derivative provenance
+        shell: pwsh
+        run: |
+          Copy-Item readiness/experimental/watchbridge/revision45/INSTALLER-NOTICE.txt watchbridge/artifacts/windows/READINESS-PATCH-NOTICE.txt
+          Copy-Item readiness/experimental/watchbridge/revision45/watchbridge-healthkit.patch watchbridge/artifacts/windows/
+      - uses: actions/upload-artifact@v4
+        with:
+          name: readiness-watchbridge-healthkit-Windows-EXPERIMENTAL
+          if-no-files-found: error
+          path: watchbridge/artifacts/windows/*

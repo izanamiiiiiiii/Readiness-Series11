@@ -1,0 +1,10 @@
+Experimental Readiness HealthKit provisioning fix, based on WatchBridge 0.1.6.
+Original source: https://github.com/AdminZachary/WatchBridge
+Pinned source: e8403df07d0e51c0bdebe8684974f6f22f33e340
+isideload/iloader source attribution: https://github.com/nab138/iloader
+This is a modified build, not an official WatchBridge/iloader release or endorsement.
+It enables HealthKit for host/Watch App IDs declaring read access and verifies the resulting profiles before signing.
+Sign in with your own Apple account. No account credentials, signing keys, or health data are bundled with this build.
+Health access still requires your consent on the iPhone and Apple Watch.
+The executable is not Authenticode-signed. Review BUILD.json, SHA256SUMS.txt, LICENSES.zip, and the included patch.
+Physical Series 9/10 compatibility remains experimental.
